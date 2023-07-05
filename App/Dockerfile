@@ -13,6 +13,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application code
 COPY app.py .
 
-expose 8080
+expose 5000
 # Set the entry point command
 CMD ["python", "app.py"]
