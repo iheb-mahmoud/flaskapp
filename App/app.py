@@ -1,14 +1,17 @@
 from flask import Flask
-import socket
 import os
+import socket
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    server_name = socket.gethostname()
-    container_id = os.uname()[1]
-    return f'Hello from server {server_name}! Container ID: {container_id}'
+    if 'HOSTNAME' in os.environ:
+        server_name = os.environ['HOSTNAME']
+    else:
+        server_name = socket.gethostname()
+    return f'Hello from server {server_name}!'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
