@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  tools:
+    image: houbalinko/flaskapp2:0.1.66  # Replace with your desired image name
+    deploy:
+      replicas: 1 # You can set the desired number of replicas here
+      update_config:
+        parallelism: 2
+        order: start-first
+    ports:
+      - '5000:5000'
+    labels:  # Corrected placement of labels under the deploy section
+        visualizer.autoscale.min: '1'
+        visualizer.autoscale.max: '5'
+        visualizer.autoscale.up.cpu: '0.2'
+        visualizer.autoscale.down.cpu: '0.1'
+        visualizer.autoupdate: 'true'
