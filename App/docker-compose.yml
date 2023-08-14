@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  reverse-proxy:
+    image: traefik:v2.10
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --providers.docker.network=traefik-public
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./certs:/certs
+    labels:
+      - "traefik.http.routers.api.rule=Host(`dash.localhost`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=default"
+      - "traefik.http.routers.traefik.entrypoints=web,websecure"
+
+  myapp:
+    image: houbalinko/flaskapp2:0.1.66
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        order: start-first
+    ports:
+      - '5000:5000'
+    labels:
+      - "visualizer.autoscale.min=1"
+      - "visualizer.autoscale.max=5"
+      - "visualizer.autoscale.up.cpu=0.2"
+      - "visualizer.autoscale.down.cpu=0.1"
+      - "visualizer.autoupdate=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.myapp.rule=Host(`app.localhost`)"
+      - "traefik.http.routers.myapp.entrypoints=web"
+      - "traefik.http.services.myapp.loadbalancer.server.port=5000"
+    depends_on:
+      - reverse-proxy
+
+networks:
+  traefik-public:
+    external: true
