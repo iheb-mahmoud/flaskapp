@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+body {
+  height: 100vh;
+  
+}
+
+a {
+  text-decoration: none;
+  color: #09131D;
+}
+
+p {
+  line-height: 1.7;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2.2;
+}
+
+h2,
+h3 {
+  font-weight: 700; /* Increase the font weight for a bolder look */
+  font-size: 1.2rem; /* Increase the font size for a bigger appearance */
+  margin-bottom: 15px; /* Adjust the margin for spacing */
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 60px;
+}
+
+.header-logo {
+  width: 8em;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header ul li {
+  margin-left: 20px;
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+}
+
+.header ul li a:hover {
+  color: #777;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  padding: 0 20px;
+  color:#5dbea3
+}
+
+
+.heading p {
+  color: #828282;
+}
+.servermessage {
+  font-size: 1rem; /* Adjust the font size as needed */
+  font-weight: 700;
+  margin: 10px; /* Add margin for spacing */
+  padding: 0; /* Remove padding */
+  color: #0b1814;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  color:black
+}
+
+.task {
+  background-color: #5dbea3;
+  margin: 10px 0;
+  padding: 20px 0 10px;
+  position: relative;
+  border-radius: 10px; /* Adjust this value for the level of roundness you prefer */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7); /* Adjust these values for the shadow effect */
+  transition: transform 0.2s, box-shadow 0.2s; /* Add smooth transitions for the transform and box-shadow properties */
+}
+
+.task:hover {
+  transform: scale(1.05); /* Increase the scale to make it pop */
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.9); /* Adjust the shadow for the hover effect */
+}
+
+
+
+.task .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: black; /* Set the initial color of the element */
+  transition: color 0.2s; /* Add smooth transition for the color property */
+}
+
+.task .close:hover {
+  color: red; /* Change the color to red on hover */
+}
+
+
+
+
+
+
+.form,
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #5dbea3;
+  border-radius: 5px;
+  background: #5dbea3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7); /* Adjust these values for the shadow effect */
+}
+
+.btn svg {
+  margin-right: 8px;
+}
+
+.btn-reverse {
+  background: #fff;
+  color: #000;
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000 transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 0.3s linear infinite;
+}
+
+.waving-hand {
+  width: 40px;
+  height: auto;
+  margin-left: 10px;
+  animation: wave 2s infinite;
+}
+
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-text {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #5dbea3;
+  text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5); /* Adjust these values for the shadow effect */
+
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  
+  }
+}
